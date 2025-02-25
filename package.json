@@ -1,0 +1,52 @@
+{
+  "name": "portfolio_wp",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "author": "",
+  "browserslist": [
+    "defaults"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "wp-env": "wp-env",
+    "wp:start": "wp-env start",
+    "wp:update": "wp-env start --update",
+    "wp:stop": "wp-env stop",
+    "wp:destroy": "wp-env stop && wp-env destroy",
+    "wp:import": "wp-env run cli wp db import sql/wpenv.sql",
+    "wp:export": "wp-env run cli wp db export sql/wpenv.sql",
+    "wp:reset": "wp-env run cli wp db reset",
+    "wp:serch-replace": "wp-env run cli wp search-replace",
+    "wp:create-user": "wp-env run cli wp user create admin admin@example.com --role=administrator --user_pass=password",
+    "wp:status": "docker ps",
+    "dev": "wp-env start && wp-env run cli wp theme activate development && vite",
+    "build": "vite build",
+    "preview": "wp-env start && wp-env run cli wp theme activate production && vite preview",
+    "lint:html": "markuplint \"**/*.php\"",
+    "lint:css": "stylelint --fix **/*.{css,scss,sass}"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@hilosiva/rola": "^0.1.3",
+    "@hilosiva/vite-plugin-image-optimizer": "^0.1.0",
+    "@hilosiva/vite-plugin-php-loader": "^0.1.1",
+    "@markuplint/php-parser": "^3.7.0",
+    "@types/alpinejs": "^3.13.11",
+    "@wordpress/env": "^10.17.0",
+    "alpinejs": "^3.14.8",
+    "gsap": "^3.12.7",
+    "lenis": "^1.1.20",
+    "markuplint": "^4.9.2",
+    "path": "^0.12.7",
+    "stylelint": "^16.7.0",
+    "stylelint-config-recess-order": "^5.0.1",
+    "vaultcss": "^0.1.5",
+    "vaultscript": "^0.1.5",
+    "vite": "^6.1.0",
+    "vite-plugin-static-copy": "^2.2.0",
+    "vite-plugin-vaultcss": "^0.1.5"
+  }
+}

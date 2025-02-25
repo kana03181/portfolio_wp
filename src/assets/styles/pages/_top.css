@@ -1,0 +1,33 @@
+/* .hero {
+  position: fixed;
+  inset: 0;
+} */
+
+/* .hero__body {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #000;
+} */
+
+.hero__title {
+  margin-block: calc(32 / 16 * 1rem) 0;
+  font-family: var(--font-sans-en);
+  font-size: calc(32 / 16 * 1rem);
+  letter-spacing: var(--tracking-widest);
+}
+
+.hero__text {
+  margin-block-start: 1.5em;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  letter-spacing: 0.06em;
+}
+
+.hero__figure {
+  block-size: 100vh;
+
+  img {
+    height: 100%;
+  }
+}

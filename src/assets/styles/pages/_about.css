@@ -1,0 +1,288 @@
+
+.p-about__body{
+  display: grid;
+  gap: calc(48 / 16 * 1rem);
+  margin-block-start: calc(160 / 16 * 1rem);
+}
+
+.p-about__bodyMain{
+  display: grid;
+  gap: clamp(calc(80 / 16 * 1rem), 3.571rem + 7.14vw, calc(160 / 16 * 1rem)); /* view:320-1440 */
+}
+
+/* ========================
+    Profile
+======================== */
+
+.p-about__bodyMainProfile .cardBlock__body{
+  display: grid;
+  gap: calc(24 / 16 * 1rem);
+  width: calc(765 / 1110* 100%);
+
+  @media (max-width:880px){
+    width: 100%;
+  }
+}
+
+.p-about__bodyMainProfile .cardBlock__title{
+  font-size: calc(36 / 16 * 1rem);
+  color: var(--color-accent);
+
+  @media (max-width:1024px){
+    --fs-min:24;
+    --fs-max:36;
+    --viewport:1024;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+}
+
+.p-about__bodyIndexList .item__link{
+  font-weight: 500;
+}
+
+.p-about__bodyMainProfile .cardBlock__img{
+  width: calc(305 / 1110* 100%);
+  aspect-ratio: 1 / 1;
+
+  @media (max-width:880px){
+    width: 100%;
+  }
+
+}
+
+/* ========================
+    Favorite
+======================== */
+.p-about__bodyMainFavorite .cardBlock__body{
+  width: calc(650 / 1110* 100%);
+
+  @media (max-width:880px){
+    width: 100%;
+  }
+
+}
+
+.p-about__bodyMainFavorite .cardBlock__title{
+  margin-block: calc(20 / 16 * 1em) calc(29 / 16 * 1em);
+  font-size: calc(32 / 16 * 1em);
+  line-height: 1;
+
+  @media (max-width:1024px){
+    --fs-min:20;
+    --fs-max:32;
+    --viewport:1024;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+  @media (max-width:768px){
+    margin-block: calc(16 / 16 * 1em) calc(18 / 16 * 1em);
+  }
+}
+
+.p-about__bodyMainFavorite .cardBlock__subtitle{
+  @media (max-width:768px){
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+}
+
+.p-about__bodyMainFavorite .cardBlock__img{
+  width: calc(420 / 1110* 100%);
+  aspect-ratio: 3 /2;
+
+  @media (max-width:880px){
+    width: 100%;
+  }
+
+}
+
+/* ========================
+    Skill
+======================== */
+
+
+.p-about__bodyMainSkill .cardBlockTitle{
+  margin-block-end: calc(40 / 16 * 1rem);
+  font-size: calc(24 / 16 * 1em);
+  font-weight: 400;
+  letter-spacing: var(--tracking-normal);
+
+  @media (max-width:1024px){
+    --fs-min:20;
+    --fs-max:24;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--sentence-fs-viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+}
+
+.p-about__bodyMainSkill .cardBlock{
+  margin-block-start: calc(48 / 16 * 1em);
+}
+
+.p-about__bodyMainSkill .cardBlockTxt{
+  font-size: calc(20 / 16 * 1em);
+  line-height: var(--leading-relaxed);
+
+  @media (max-width:1024px){
+    --fs-min:16;
+    --fs-max:20;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--sentence-fs-viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+}
+
+.p-about__bodyMainSkill .cardBlockTxt + .cardBlockTxt{
+  margin-block-start: calc(16 / 16 * 1em);
+}
+
+.p-about__bodyMainSkill .cardBlockDevList{
+  display: flex;
+  gap: calc(32 / 16 * 1rem);
+  margin-block-start: calc(32 / 16 * 1rem);
+
+  @media (max-width:768px){
+
+    gap: calc(16 / 16 * 1rem);
+  }
+}
+
+.p-about__bodyMainSkill .cardBlockDevList .item{
+  font-size: calc(20 / 16 * 1em);
+  font-weight: 400;
+  line-height: 1.8;
+
+  @media (max-width:1024px){
+    --fs-min:14;
+    --fs-max:20;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--sentence-fs-viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+}
+
+
+/* ========================
+    Career
+======================== */
+
+.p-about__bodyMainCareer .cardBlock{
+  flex-direction: row;
+
+  @media (max-width:768px){
+    flex-direction: column-reverse;
+  }
+}
+
+.p-about__bodyMainCareer .cardBlock__body{
+  display: grid;
+  grid-auto-rows: 1fr auto;
+  gap: calc(39 / 16 * 1rem);
+  width: calc(648 / 1110* 100%);
+  margin-block-end: calc(20 / 16 * 1rem);
+
+  @media (max-width:880px){
+    width: 100%;
+  }
+
+}
+
+.p-about__bodyMainCareer .cardBlock__title{
+  align-self: flex-end;
+  font-size: calc(24 / 16 * 1em);
+
+  @media (max-width:1024px){
+    --fs-min:18;
+    --fs-max:24;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--sentence-fs-viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+}
+
+.p-about__bodyMainCareer .cardBlock__img{
+  width: calc(304 / 1110* 100%);
+
+  @media (max-width:880px){
+    width: 100%;
+  }
+
+}
+
+/* ========================
+    CareerVision
+======================== */
+
+
+.p-about__bodyMainCareerVision .cardBlock{
+  display: grid;
+  gap: calc(40 / 16 * 1rem);
+  margin-block-start: calc(48 / 16 * 1rem);
+}
+
+.p-about__bodyMainCareerVision .cardBlock__body{
+  display: flex;
+  gap: calc(66 / 16 * 1rem);
+
+  @media (max-width:768px){
+    flex-direction: column;
+    gap: calc(32 / 16 * 1rem);
+  }
+
+}
+
+.p-about__bodyMainCareerVision .cardBlock__title{
+  min-width: calc(164 / 16 * 1em);
+  font-size: calc(24 / 16 * 1em);
+  font-weight: 500;
+  letter-spacing: var(--tracking-normal);
+
+  @media (max-width:1024px){
+    --fs-min:18;
+    --fs-max:24;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--sentence-fs-viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+
+  @media (max-width:768px){
+    text-indent: -1em;
+  }
+
+}
+
+.p-about__bodyMainCareerVision .cardBlock__txtBody{
+  margin-block-start: calc(39 / 16 * 1rem);
+
+  @media (max-width:768px){
+    margin-block-start: 0;
+  }
+
+}
+
+.p-about__bodyMainCareerVision .cardBlock__txtBody .dot{
+  vertical-align: middle;
+}
+
+.p-about__bodyMainCareerVision .cardBlock__txtBodyItem{
+  font-size: calc(20 / 16 * 1em);
+  font-weight: 400;
+  letter-spacing: var(--tracking-normal);
+  list-style-type: disc;
+
+  @media (max-width:1024px){
+    --fs-min:16;
+    --fs-max:20;
+
+    font-size: clamp(calc(var(--fs-min) / 16 * 1em), calc(var(--fs-max) / var(--sentence-fs-viewport) * 100vw), calc(var(--fs-max) / 16 * 1em));
+  }
+
+
+  &::marker {
+    font-size: calc(8 / 16* 1em);
+  }
+}

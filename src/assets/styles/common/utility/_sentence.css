@@ -1,0 +1,14 @@
+
+
+
+.u-sentence{
+  --fs-viewport: 768;
+  /* --fs-min: 14;
+  --fs-max: 20; */
+  --line-height: 1.5;
+  --letter-spacing: 0;
+
+  /* font-size: clamp(calc(var(--sentence-fs-min)* 1em / 16), calc(var(--sentence-fs-max) / var(--sentence-fs-viewport)* 100vw), calc(var(--sentence-fs-max)* 1em / 16)); */
+  line-height: var(--line-height);
+  letter-spacing: calc(var(--letter-spacing)* 1em);
+}

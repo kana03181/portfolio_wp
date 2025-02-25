@@ -1,0 +1,8 @@
+.cm-f{
+  margin-block-start: calc(160 / 16 * 1rem);
+}
+
+.cm-f-inner{
+  padding-block-end: calc(32 / 16 * 1rem);
+  padding-inline: calc(50 / 1440 * 100%);
+}

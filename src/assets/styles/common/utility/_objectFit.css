@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.u-objectFit{
+  width: 100%;
+  object-fit: cover;
+}

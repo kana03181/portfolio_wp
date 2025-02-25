@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.u-container {
+  width: calc(300/375*100%);
+  max-width: clamp(calc(var(--max-viewport) * 1em/16), calc(var(--max-viewport) / 1600*100vw), calc(var(--max-viewport) * 1.1em/16));
+  margin-inline: auto;
+}
