@@ -2,109 +2,193 @@
   display: grid;
   grid-template-areas:
     "logo nav"
+    "empty empty"
     "dev info"
     "dev txt";
-  grid-template-rows: auto auto;
+  grid-template-rows: auto calc(48 / 16 * 1rem) auto auto;
   grid-template-columns: 1fr minmax(320px, 50%);
     grid-template-columns: 1fr auto;
-  gap: calc(40 / 16 * 1rem) 0;
 
   @media (max-width:768px){
+    --row-gap:0;
+
     grid-template-areas:
     "logo"
     "nav"
     "dev"
     "info"
     "txt";
+    grid-template-rows: auto;
+    row-gap: calc(var(--row-gap) / 16 * 1rem);
   }
 
 }
 
 .cm-f__bodyLogo{
   grid-area: logo;
+
+  @media (max-width:768px){
+    margin-block-end: clamp(32 / 16 * 1rem, 32 / 375 * 100vw, 48 / 16 * 1rem);
+  }
 }
 
 
 .cm-f__bodyNav{
   grid-area: nav;
+  align-self: center;
+
+  @media (max-width:768px){
+    margin-block-end: clamp(28 / 16 * 1rem, 32 / 375 * 100vw, 32 / 16 * 1rem);
+  }
 }
 
 .cm-f__bodyDev{
   grid-area: dev;
+
+  @media (max-width:768px){
+    margin-block-end: clamp(28 / 16 * 1rem, 32 / 375 * 100vw, 32 / 16 * 1rem);
+  }
 }
 
 .cm-f__bodyNavList,
 .cm-f__bodyInfoList{
   display: flex;
-  gap: calc(32 / 16 * 1rem);
   align-items: center;
   justify-content: flex-end;
 
   @media (max-width:768px){
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
-.cm-f__bodyNavList{
-  @media (max-width:768px){
-    flex-direction: column;
-  }
-}
 
 .cm-f__bodyLogoLink,
 .cm-f__bodyNavList .item__link,
 .cm-f__bodyInfoList .item__link{
   display: block;
-  color: var(--color-accent);
 }
 
 .cm-f__bodyLogoLink{
+  font-size: fluid(16px 28px);
+  font-weight: 700;
+  letter-spacing: var(--tracking-normal);
+
   @media (max-width:768px){
-    text-align: center;
+    text-align: left;
+  }
+}
+
+
+.cm-f__bodyNavList{
+  gap: fluid(18px 32px);
+
+  @media (max-width:768px){
+    flex-direction: column;
+    align-items: flex-start;
   }
 
+  & .item__link{
+    font-size: fluid(14px 18px);
+    font-weight: 700;
+    letter-spacing: var(--tracking-normal);
+    transition: 0.45s cubic-bezier(0.05, 0.23, 0.21, 0.98);
+    transition-property: color;
+
+    &:hover{
+      color: var(--color-grey);
+      transition: 0.45s cubic-bezier(0.05, 0.23, 0.21, 0.98);
+      transition-property: color;
+    }
+
+  }
 }
 
-.cm-f__bodyNavList .item__link{
-  font-size: calc(16 / 16 * 1rem);
-  font-weight: 700;
+
+.cm-f__bodyDevList{
+  @media (max-width:768px){
+    width: 100%;
+    text-align: left;
+  }
+
+  & .item{
+    --fs:14;
+
+    font-size: calc(var(--fs) / 16 * 1rem);
+    font-weight: 500;
+    color: var(--color-dark);
+    text-align: left;
+    list-style-type: none;
+
+    & .item_name{
+      color: var(--color-accent);
+      transition: 0.45s cubic-bezier(0.05, 0.23, 0.21, 0.98);
+      transition-property: color;
+
+
+    &:hover{
+      color: var(--color-link-hover);
+      transition: 0.45s cubic-bezier(0.05, 0.23, 0.21, 0.98);
+      transition-property: color;
+    }
+
+    }
+  }
 }
 
-.cm-f__bodyDevList .item{
-  color: var(--color-dark);
-}
-
-.cm-h__navListItem,
-.cm-f__bodyDevList .item,
 .cm-f__bodyInfoList .item{
   list-style-type: none;
 }
 
-
-.cm-f__bodyDevList .item,
-.cm-f__bodyInfoList .item__link{
-  font-size: calc(14 / 16 * 1rem);
-  font-weight: 500;
-}
-
-
 .cm-f__bodyInfo{
+  --pb-start:8;
+
   grid-area: info;
   align-self: center;
-  padding-block-end: calc(5 / 16 * 1rem);
+  padding-block-start: calc(var(--pb-start) / 16 * 1rem);
+
+  @media (max-width:768px){
+    --pb-start:0;
+    margin-block-end: clamp(32 / 16 * 1rem, 32 / 375 * 100vw, 48 / 16 * 1rem);
+  }
 }
+
+.cm-f__bodyInfoList{
+  gap: fluid(24px 32px);
+
+  & .item__link{
+    --fs:14;
+
+    font-size: calc(var(--fs) / 16 * 1rem);
+    font-weight: 500;
+    color: var(--color-accent);
+    transition: 0.45s cubic-bezier(0.05, 0.23, 0.21, 0.98);
+    transition-property: color;
+
+    &:hover{
+      color: var(--color-link-hover);
+      transition: 0.45s cubic-bezier(0.05, 0.23, 0.21, 0.98);
+      transition-property: color;
+    }
+
+  }
+}
+
 
 .cm-f__bodyCopy{
   grid-area: txt;
-  align-self: center;
+  margin-block-start: fluid(36px 42px);
+  line-height: 1;
   text-align: end;
 
   @media (max-width:768px){
-    text-align: center;
+    margin-block-start: calc(4 / 16 * 1rem);
+    text-align: right;
   }
 }
 
 .cm-f__bodyCopyTxt{
-  font-size: calc(10 / 16 * 1rem);
+  --fs:10;
+
+  font-size: calc(var(--fs) / 16 * 1rem);
   font-weight: 500;
 }

@@ -27,9 +27,9 @@ export default function () {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr.onload = function () {
-          if (xhr.status === 200 || categoryLink.classList.contain(".is-fadeIn")) {
+          if (xhr.status === 200 ) {
             products.innerHTML = xhr.responseText;
-            categoryLink.classList.add("is-fadeIn");
+            products.classList.add("is-fadeIn");
             products.style.animation = "articleFadeIn 2.2s ease-in";
           } else {
             alert("エラーが発生しました");

@@ -2,7 +2,7 @@
 @import "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap";
 
 @import "vaultcss";
-@import "./components/welcome.css" layer(components);
+@import "@fontsource/yakuhanjps";
 
 /* ================
       common
@@ -18,7 +18,8 @@
 @import "./common/utility/_sentence.css" layer(utility);
 
 /* component */
-@import "./common/components/button.css" layer(components);
+@import "./common/components/_button.css" layer(components);
+@import "./common/components/_title.css" layer(components);
 
 /* module */
 @import "./common/module/header/_common.css" layer(module);
@@ -27,17 +28,18 @@
 @import "./common/module/footer/_common.css" layer(module);
 @import "./common/module/footer/_body.css" layer(module);
 @import "./common/module/_under.css" layer(module);
-
+@import "./common/module/_mainFooter.css" layer(pages);
 
 
 /* ================
       pages
 /* ================*/
-
-@import "./pages/_top.css" layer(pages);
+@import "./top/_mv.css" layer(pages);
+@import "./top/_about.css" layer(pages);
+@import "./top/_works.css" layer(pages);
 @import "./pages/_about.css" layer(pages);
 @import "./pages/_product.css" layer(pages);
 @import "./pages/_detail.css" layer(pages);
 
 /* module */
-@import "./pages/module/_about.css" layer(pages);
+@import "./pages/module/_about.css" layer(module);

@@ -48,5 +48,10 @@
     "vite": "^6.1.0",
     "vite-plugin-static-copy": "^2.2.0",
     "vite-plugin-vaultcss": "^0.1.5"
+  },
+  "dependencies": {
+    "@fontsource/yakuhanjps": "^5.2.5",
+    "swiper": "^11.2.6",
+    "yakuhanjp": "^4.1.1"
   }
 }

@@ -1,8 +1,13 @@
 .cm-f{
-  margin-block-start: calc(160 / 16 * 1rem);
+  --mb-start:160;
+
+  margin-block-start: calc(var(--mb-start)/ 16 * 1rem);
 }
 
 .cm-f-inner{
-  padding-block-end: calc(32 / 16 * 1rem);
-  padding-inline: calc(50 / 1440 * 100%);
+  --pi:90;
+
+  padding-block-start: fluid(28px 80px);
+  padding-block-end: fluid(32px 56px);
+  padding-inline: fluid(18px 90px);
 }

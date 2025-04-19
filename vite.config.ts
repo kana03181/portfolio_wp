@@ -36,7 +36,13 @@ export default defineConfig({
         reloadPageOnChange: true,
       },
     }),
-    vaultcss(),
+    vaultcss({
+      fluid: {
+        minViewPort: 375, // 最小ビューポートの初期値を 375 に変更
+        maxViewPort: 1440, // 最大ビューポートの初期値を 1440 に変更
+        baseFontSize: 16, // ベースのフォントサイズ（規定値: 16）
+      }
+    }),
   ],
   build: {
     outDir: `../${dir.outDir}`,

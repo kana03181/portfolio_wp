@@ -1,0 +1,49 @@
+.c-title{
+  --gap:24;
+
+  display: grid;
+  gap: fluid(10px 24px);
+}
+
+.c-title__ja{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  font-size: fluid(16px 32px);
+
+  &.--under{
+    font-size: fluid(20px 40px);
+  }
+}
+
+.c-title__jaTxt {
+  display: inline-block;
+}
+
+.c-title__en{
+  --pb:3;
+
+  order: -1;
+  width: fit-content;
+  padding-block: calc(var(--pb) / 16 * 1rem);
+  padding-inline: fluid(25px 46px);
+  font-size: fluid(13px 18px);
+  color: var(--color-title-en);
+  text-align: center;
+  text-transform: capitalize;
+  background-color: var(--color-title-bg);
+  border-radius: 100%;
+}
+
+.c-title__ja,
+.c-title__en{
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: var(--tracking-normal);
+}
+
+
+
+.js-contentsTitle > span {
+  display: inline-block;
+}

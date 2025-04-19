@@ -75,25 +75,28 @@ add_action('after_setup_theme', 'theme_setup');
 
 
 
-/*
+/*======================================
     ナビゲーションをカスタマイズ
-  ----------------------------------- */
+======================================*/
 
 // li のクラスをカスタマイズ
 function custom_nav_menu_classes($classes, $item, $args)
 {
+
   // 新しいクラスを入れる配列
   $new_classes = [];
 
-  // WordPressの重要なクラスを保持
+  // ナビゲーションにis-currentを追加
   if (in_array("current-menu-item", $classes)) {
     $new_classes[] = "current-menu-item";
-  }
-  if (in_array("current-menu-parent", $classes)) {
-    $new_classes[] = "current-menu-parent";
-  }
-  if (in_array("current-page-ancestor", $classes)) {
-    $new_classes[] = "current-page-ancestor";
+    $new_classes[] = "is-current";
+  } else {
+    if (is_tax("product_category") || is_singular('products')) {
+      if (strpos($item->url, "/products/") !== false) {
+        $new_classes[] = "current-menu-item";
+        $new_classes[] = "is-current";
+      }
+    }
   }
 
   // ヘッダーメニュー（'global'）の <li> にカスタムクラスを追加
@@ -164,6 +167,25 @@ remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'feed_links_extra', 3);
 
+/*======================================
+  不要なクラス名を削除
+======================================*/
+function forcefully_remove_image_block_classes($content)
+{
+  // class属性を対象にし、wp-block-group, wp-block-list, wp-block-image, size-* を削除
+  return preg_replace_callback(
+    '/class="([^"]+)"/',
+    function ($matches) {
+      $classes = explode(' ', $matches[1]);
+      $filtered = array_filter($classes, function ($class) {
+        return !preg_match('/^(wp-block-group|wp-block-list|wp-block-image|size-[\w-]+)/', $class);
+      });
+      return $filtered ? 'class="' . implode(' ', $filtered) . '"' : '';
+    },
+    $content
+  );
+}
+add_filter('the_content', 'forcefully_remove_image_block_classes', 99);
 
 /*======================================
   カスタム投稿タイプ
@@ -226,14 +248,37 @@ function product_post_type_init()
 }
 add_action("init", "product_post_type_init");
 
+// 投稿一覧に「リンク」カラムを追加
+function my_product_admin_customizations()
+{
+  add_filter("manage_products_posts_columns", function ($columns) {
+    $new_columns = [];
+    foreach ($columns as $key => $value) {
+      $new_columns[$key] = $value;
+      if ($key === "taxonomy-product_category") {
+        $new_columns["custom_link"] = "リンク";
+      }
+    }
+    return $new_columns;
+  });
+
+  add_action("manage_products_posts_custom_column", function ($column_key, $post_id) {
+    if ($column_key === "custom_link") {
+      $post = get_post($post_id);
+      echo esc_html($post->post_name);
+    }
+  }, 10, 2);
+}
+add_action("admin_init", "my_product_admin_customizations");
 
 /*======================================
-  Ajax
+  Ajaxでカテゴリーを取得
 ======================================*/
 
 // Ajaxリクエストを処理する関数
 function filter_posts_by_category()
 {
+
   // カテゴリースラッグを受け取る
   $category_slug = isset($_GET["category_slug"]) ? sanitize_text_field($_GET["category_slug"]) : "";
 
@@ -286,7 +331,21 @@ function filter_posts_by_category()
           <?php endif; ?>
           <span class="title__main"><?php the_title(); ?></span>
         </h3>
-        <p class="txt"><?php the_excerpt(); ?></p>
+        <?php
+        $excerpt = get_the_excerpt();
+
+        if (!empty($excerpt)) {
+          if (preg_match('/^.*?。/u', $excerpt, $matches)) {
+            $first_sentence = trim($matches[0]);
+          } else {
+            $first_sentence = $excerpt;
+          }
+
+          if (strlen($first_sentence) > 0) {
+            echo '<p class="txt">' . esc_html($first_sentence) . '</p>';
+          }
+        }
+        ?>
 
         <?php
         // 投稿のカテゴリーを取得
@@ -312,11 +371,11 @@ function filter_posts_by_category()
         </figure>
 
         <p class="body__btn c-btn">
-          <a href="<?php the_permalink(); ?>" class="c-btn__link is-common">
+          <a href="<?php the_permalink(); ?>" class="c-btn__link">
             <span class="c-btn__linkTxt">詳しく見る</span>
             <span class="c-btn__linkIcon">
               <svg width="12" height="10" viewBox="0 0 12 10">
-                <use xlink:href="/assets/images/arrow.svg#arrow"></use>
+                <use href="#arrow"></use>
               </svg>
             </span>
           </a>
@@ -351,13 +410,12 @@ add_action("wp_footer", "enqueue_ajax_script");
 /*======================================
   抜粋分の調整
 ======================================*/
-
 /*
       文字数の変更
     ----------------------------------- */
 function product_excerpt_length($length)
 {
-  return 32;
+  return 150;
 }
 add_filter("excerpt_length", "product_excerpt_length", 999);
 
@@ -371,8 +429,122 @@ function product_excerpt_more()
 add_filter("excerpt_more", "product_excerpt_more");
 
 
+
 /*======================================
-  メインループの設定を変更
+制作実績投稿画面にadd_meta_boxを追加
+======================================*/
+function my_custom_meta_box()
+{
+  add_meta_box(
+    'my_custom_meta_box', // メタボックスID
+    '制作の詳細', // メタボックスタイトル
+    'my_custom_meta_box_callback', // コールバック関数
+    'products', // 投稿タイプ（'post', 'page' など）
+    'side', // 表示位置（'normal', 'side', 'advanced'）
+    'default' // 優先度（'high', 'core', 'default', 'low'）
+  );
+}
+add_action('add_meta_boxes', 'my_custom_meta_box');
+
+// メタボックスの内容を表示するコールバック関数
+function my_custom_meta_box_callback($post)
+{
+  // 現在の投稿のカスタムフィールドを取得
+  $date = get_post_meta($post->ID, '_date', true);
+  $scale = get_post_meta($post->ID, '_scale', true);
+  $position = get_post_meta($post->ID, '_position', true);
+  $term = get_post_meta($post->ID, '_term', true);
+  $time = get_post_meta($post->ID, '_time', true);
+  $language = get_post_meta($post->ID, '_language', true);
+  $develop = get_post_meta($post->ID, '_develop', true);
+  $tool = get_post_meta($post->ID, '_tool', true);
+  $equipment = get_post_meta($post->ID, '_equipment', true);
+  $location = get_post_meta($post->ID, '_location', true);
+
+  // 公開日入力欄
+  echo '<label for="date">公開日：</label>';
+  echo '<input type="text" id="date" name="date" value="' . esc_attr($date) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 制作規模入力欄
+  echo '<label for="scale">制作規模：</label>';
+  echo '<input type="text" id="scale" name="scale" value="' . esc_attr($scale) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 制作担当入力欄
+  echo '<label for="position">制作担当：</label>';
+  echo '<input type="text" id="position" name="position" value="' . esc_attr($position) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 制作期間入力欄
+  echo '<label for="term">制作期間：</label>';
+  echo '<input type="text" id="term" name="term" value="' . esc_attr($term) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 制作時間入力欄
+  echo '<label for="time">制作時間：</label>';
+  echo '<input type="text" id="time" name="time" value="' . esc_attr($time) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 使用言語入力欄
+  echo '<label for="language">使用言語：</label>';
+  echo '<input type="text" id="language" name="language" value="' . esc_attr($language) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 開発環境入力欄
+  echo '<label for="develop">開発環境：</label>';
+  echo '<input type="text" id="develop" name="develop" value="' . esc_attr($develop) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 使用ツール入力欄
+  echo '<label for="tool">使用ツール：</label>';
+  echo '<input type="text" id="tool" name="tool" value="' . esc_attr($tool) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 撮影機材入力欄
+  echo '<label for="equipment">撮影機材：</label>';
+  echo '<input type="text" id="equipment" name="equipment" value="' . esc_attr($equipment) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 撮影場所入力欄
+  echo '<label for="location">撮影場所：</label>';
+  echo '<input type="text" id="location" name="location" value="' . esc_attr($location) . '" style="margin-bottom: 1em;" /><br>';
+}
+
+// 保存処理
+function my_custom_meta_box_save($post_id)
+{
+  // 自動保存やドラフト更新の場合は無視
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
+
+  // 公開日と著者名を保存
+  if (isset($_POST['date'])) {
+    update_post_meta($post_id, '_date', sanitize_text_field($_POST['date']));
+  }
+  if (isset($_POST['scale'])) {
+    update_post_meta($post_id, '_scale', sanitize_text_field($_POST['scale']));
+  }
+  if (isset($_POST['position'])) {
+    update_post_meta($post_id, '_position', sanitize_text_field($_POST['position']));
+  }
+  if (isset($_POST['term'])) {
+    update_post_meta($post_id, '_term', sanitize_text_field($_POST['term']));
+  }
+  if (isset($_POST['time'])) {
+    update_post_meta($post_id, '_time', sanitize_text_field($_POST['time']));
+  }
+  if (isset($_POST['language'])) {
+    update_post_meta($post_id, '_language', sanitize_text_field($_POST['language']));
+  }
+  if (isset($_POST['develop'])) {
+    update_post_meta($post_id, '_develop', sanitize_text_field($_POST['develop']));
+  }
+  if (isset($_POST['tool'])) {
+    update_post_meta($post_id, '_tool', sanitize_text_field($_POST['tool']));
+  }
+  if (isset($_POST['equipment'])) {
+    update_post_meta($post_id, '_equipment', sanitize_text_field($_POST['equipment']));
+  }
+  if (isset($_POST['location'])) {
+    update_post_meta($post_id, '_location', sanitize_text_field($_POST['location']));
+  }
+}
+add_action('save_post', 'my_custom_meta_box_save');
+
+
+/*======================================
+メインループの設定を変更
 ======================================*/
 function my_pre_get_posts($query)
 {
@@ -383,7 +555,8 @@ function my_pre_get_posts($query)
   }
 
   // アーカイブページの投稿を古い順に変更
-  if ($query->is_post_type_archive('products')) {
+  if ($query->is_post_type_archive("products") || $query->is_tax("product_category")) {
+    $query->set("orderby", "date");
     $query->set("order", "ASC");
   }
 }
@@ -391,7 +564,7 @@ add_action('pre_get_posts', 'my_pre_get_posts');
 
 
 /*======================================
-  テーマカスタマイザー
+テーマカスタマイザー
 ======================================*/
 function portfolio_customize_register($wp_customize)
 {
@@ -402,7 +575,7 @@ function portfolio_customize_register($wp_customize)
   ]);
 
   /*
-      キャッチコピー
+    キャッチコピー
   ----------------------------------- */
   $wp_customize->add_setting("hero_text", [
     "default" => "いたいかなのポートフォリオ"
@@ -416,7 +589,7 @@ function portfolio_customize_register($wp_customize)
   ]));
 
   /*
-      MV 画像
+    MV 画像
   ----------------------------------- */
   $wp_customize->add_setting("hero_img", [
     "default" => get_theme_file_uri() . "/assets/images/hero_image.jpg"

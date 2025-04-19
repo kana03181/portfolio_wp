@@ -1,0 +1,21 @@
+.cm-mainFooter-inner{
+  /* --max-container-size:1260; */
+  padding-inline: fluid(18px 90px);
+
+
+}
+
+.cm-mainFooter__Img{
+  --radius:20;
+
+  aspect-ratio: 1260 / 210;
+  margin: 0 !important;
+  overflow: hidden;
+  border-radius: calc(var(--radius) / 16 * 1rem);
+
+  @media (max-width:768px){
+    --radius:6;
+
+    aspect-ratio: 284 / 80;
+  }
+}
