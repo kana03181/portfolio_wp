@@ -119,6 +119,12 @@
     @media (max-width:768px){
       line-height: 1.4;
     }
+
+    & + .main__txt{
+      --mb-start:24;
+
+      margin-block-start: calc(var(--mb-start) / 16 * 1rem - 1em);
+    }
   }
 }
 

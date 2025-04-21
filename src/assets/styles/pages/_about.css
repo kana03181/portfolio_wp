@@ -205,6 +205,7 @@ gap: fluid(64px 80px);
   --width:1083;
 
   width: calc(var(--width) / 1440 * 100vw);
+  max-width: calc(1700 / 16 * 1rem);
 
   @media (max-width:880px){
     width: 100%;
@@ -214,7 +215,7 @@ gap: fluid(64px 80px);
     --mi-end:35;
 
     margin-inline-start: auto;
-    margin-inline-end: calc(var(--mi-end) / 1440 * 100vw);
+    margin-inline-end: max(calc(var(--mi-end) / 1440 * 100vw), calc(var(--mi-end) / 1920 * 100vw));
 
     @media (max-width:880px){
       margin-inline-start: auto;
@@ -222,11 +223,9 @@ gap: fluid(64px 80px);
     }
 
     & .body__img{
+
       @media (max-width:768px){
-
-        margin-inline-start: calc(var(--mi) / 16 * 1rem);
         rotate: -5deg;
-
       }
     }
   }
@@ -275,44 +274,56 @@ gap: fluid(64px 80px);
 
   & .body__img{
     --radius:20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     width: calc(387 / 929* 100%);
-    background-image: url(../../../assets/images/about_carrer_bg.jpg);
+    aspect-ratio: 387 / 250;
+    background-image: url(../../../assets/images/about_carrer_bg.svg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-position: center;
+    background-size: cover;
     border-radius: fluid(8px 20px);
 
 
     @media (max-width:768px){
-      --mi:-12;
+      --mi-start:10;
 
-      width: max(calc(226 / 16 * 1rem), calc(226 / 375 * 100vw));
-      margin-inline-end: calc(var(--mi) / 16 * 1rem);
+      width: 100%;
+      aspect-ratio: 226 / 146;
+      margin-inline-start: calc(var(--mi-start) / 16 * 1rem);
       rotate: 5deg;
     }
   }
 
   & .body__imgBody{
-    --pi:38;
-    --pb:15;
+    --min:44;
+    --max:120;
     --viewport:1440;
 
     position: relative;
     z-index: 2;
-    aspect-ratio: 387 / 250;
-    padding: calc(var(--pb) / var(--viewport) * 100vw) calc(var(--pi) / var(--viewport) * 100vw);
+    width: calc(100% - clamp(calc(var(--min) / 16 * 1rem), calc(76 / var(--viewport) * 100vw), calc(var(--max) / 16 * 1rem)));
+    max-width: calc(600 / 16 * 1rem);
+    aspect-ratio: 311 / 221;
     margin: 0 !important;
+
 
     @media (max-width:880px){
       --viewport:1280;
     }
 
     @media (max-width:768px){
-      --pi:22;
-      --pb:8;
-      --viewport:320;
+      --viewport:375;
+      --max:76;
 
-      aspect-ratio: 226 / 146;
+      width: calc(100% - clamp(calc(var(--min) / 16 * 1rem), calc(50 / var(--viewport) * 100vw), calc(var(--max) / 320 * 100vw)));
+      aspect-ratio: 182 / 130;
+    }
+
+    & img{
+      display: block;
     }
   }
 }

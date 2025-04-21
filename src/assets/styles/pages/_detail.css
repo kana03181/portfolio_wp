@@ -133,7 +133,7 @@
 
   & h3{
     margin-block-end: fluid(16px 20px);
-    font-size: fluid(20px 24px);
+    font-size: fluid(16px 24px);
     font-weight: 500;
     color: var(--color-accent);
     letter-spacing: var(--tracking-normal);
@@ -254,6 +254,7 @@
 
   & .items > p{
     margin-block-end: fluid(12px 20px);
+    font-size: fluid(15px 20px);
   }
 
   & .list__txtBlockhead{
@@ -355,7 +356,7 @@
     --width:123;
 
     min-width: calc(var(--width) / 16 * 1rem);
-    font-size: fluid(18px 24px);
+    font-size: fluid(16px 24px);
     font-weight: 500;
     line-height: 1.5;
     color: var(--color-accent);
@@ -364,13 +365,13 @@
   }
 
   & .item_txt{
-    font-size: fluid(16px 20px);
+    font-size: fluid(14px 20px);
     font-weight: 400;
     line-height: 1.8;
     letter-spacing: var(--tracking-normal);
 
     & li{
-      font-size: fluid(16px 20px);
+      font-size: fluid(14px 20px);
       font-weight: 400;
       line-height: 1.8;
       letter-spacing: var(--tracking-normal);

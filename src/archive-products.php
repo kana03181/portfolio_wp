@@ -31,9 +31,9 @@
           <div class="cm-under__mainBody p-product__mainBody">
             <div class="cm-under__index p-product__bodyIndex">
               <ul class="cm-under__indexList p-product__bodyIndexList">
-                <li class="cm-under__indexListItem item">
+                <!-- <li class="cm-under__indexListItem item">
                   <a class="link item__link js-categoryLink" data-slug="all" role="link">All</a>
-                </li>
+                </li> -->
                 <li class="cm-under__indexListItem item">
                   <a class="link item__link js-categoryLink" data-slug="direction" role="link">Direction</a>
                 </li>
