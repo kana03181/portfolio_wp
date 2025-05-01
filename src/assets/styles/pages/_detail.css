@@ -112,7 +112,6 @@
 
     font-size: fluid(14px 20px);
     font-weight: 400;
-    line-height: 2;
     letter-spacing: var(--tracking-normal);
   }
 
@@ -129,6 +128,10 @@
   & p > a{
     text-decoration: underline;
     text-decoration-thickness: 1px;
+  }
+
+  & li{
+    line-height: 2;
   }
 
   & h3{
@@ -183,6 +186,10 @@
 
 .p-detail__mainHeaderTxt{
   margin-block-end: fluid(24px 80px);
+
+  & p{
+    line-height: 2.1;
+  }
 }
 
 .p-detail__mainHeaderItem{
@@ -255,6 +262,7 @@
   & .items > p{
     margin-block-end: fluid(12px 20px);
     font-size: fluid(15px 20px);
+    font-weight: 500;
   }
 
   & .list__txtBlockhead{

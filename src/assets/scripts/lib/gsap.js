@@ -55,7 +55,7 @@ export default function () {
   const contentsTitle = gsap.utils.toArray(".js-contentsTitle");
     contentsTitle.forEach((title) => {
       gsap.set(title, {
-        y: 40,
+        y: 47,
       });
 
       gsap.to(title, {

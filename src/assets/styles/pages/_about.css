@@ -33,11 +33,9 @@ gap: fluid(64px 80px);
 .p-about__contentProfileCard{
 
   .body{
-  --pb-end:28;
-
   gap: fluid(28px 84px);
   justify-content: space-between;
-  padding-block: fluid(18px 42px) calc(var(--pb-end) / 16 * 1rem);
+  padding-block: fluid(18px 32px);
   padding-inline: fluid(15px 34px) fluid(18px 39px);
 
   @media (max-width:880px){
@@ -88,11 +86,19 @@ gap: fluid(64px 80px);
   & .body__itemTxt{
     font-size: fluid(14px 20px);
     font-weight: 500;
-    line-height: 1.75;
+    line-height: 1.85;
     letter-spacing: var(--tracking-normal);
 
     & + .body__itemTxt{
       margin-block-start: fluid(12px 24px);
+    }
+  }
+
+  & .body__itemTxtBr{
+    display: none;
+
+    @media (max-width:320px){
+      display: block;
     }
   }
 
@@ -164,7 +170,8 @@ gap: fluid(64px 80px);
   }
 
   & .body__itemSubtitle{
-    @media (max-width:880px){
+    @media (max-width:375px){
+      line-height: 1.7;
       word-break: keep-all;
       overflow-wrap: break-word;
     }
@@ -173,7 +180,7 @@ gap: fluid(64px 80px);
 
   & .body__itemTxt{
     font-size: fluid(14px 20px);
-    line-height: 1.75;
+    line-height: 1.85;
   }
 
   & .body__img{
@@ -269,7 +276,7 @@ gap: fluid(64px 80px);
 
   & .body__itemTxt{
     font-size: fluid(14px 20px);
-    line-height: 1.8;
+    line-height: 1.9;
   }
 
   & .body__img{
@@ -362,7 +369,7 @@ gap: fluid(64px 80px);
 
   & .body__txtSentence{
     font-size: fluid(14px 20px);
-    line-height: var(--leading-relaxed);
+    line-height: 1.85;
 
     & + .body__txtSentence{
       margin-block-start: fluid(14px 24px);

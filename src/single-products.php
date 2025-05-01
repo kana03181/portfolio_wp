@@ -62,6 +62,7 @@
               <?php
               $meta_fields = [
                 '_date'      => '公開日',
+                '_finish'      => '完成日',
                 '_scale'     => '制作規模',
                 '_position'  => '制作担当',
                 '_term'      => '制作期間',

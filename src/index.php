@@ -10,8 +10,8 @@
             <!-- /.bg -->
             <div class="txt">
               <p class="txt__sentence js-title">うまくいかない日々が駆け巡る。</p>
-              <p class="txt__sentence js-title">それでもわたしは、前に進み続ける。</p>
-              <p class="txt__sentence js-title">自分で決めた”目標”に向かって。</p>
+              <p class="txt__sentence js-title">それでもわたしは前に進み続ける、</p>
+              <p class="txt__sentence js-title">フロントエンドエンジニアを目指して。</p>
             </div>
             <!-- /.txt -->
           </div>
@@ -97,10 +97,17 @@
     <!-- /.p-top__mv -->
     <section class="p-top__about">
       <div class="p-top__about-inner">
-        <hgroup class="c-title">
-          <h2 class="c-title__ja"><span class="c-title__jaTxt js-contentsTitle">わたしについて</span></h2>
-          <p class="c-title__en">about</p>
-        </hgroup>
+        <div class="c-title">
+          <hgroup class="c-title__txt">
+            <h2 class="c-title__txtJa"><span class="c-title__txtJaItem js-contentsTitle">わたしについて</span></h2>
+            <p class="c-title__txtEn">about</p>
+          </hgroup>
+          <div class="c-title__img">
+            <img class="img js-contentsTitle" src="<?php echo esc_url(THEME_URL); ?>/assets/images/ebifurai.svg" alt="">
+          </div>
+          <!-- /.c-title__img -->
+        </div>
+        <!-- /.c-title -->
         <div class="p-top__aboutContents">
           <div class="p-top__aboutContentsRight">
             <div class="header">
@@ -112,7 +119,7 @@
             <!-- /.p-top__aboutRightHeader -->
             <div class="main">
               <p class="main__txt">
-                専門学校を卒業後、ブライダル業界で勤務中にお客様から「ホームページが見ずらい」と言われたのをきっかけに、
+                専門学校を卒業後、ブライダル業界で勤務中にお客様から「ホームページが見づらい」と言われたのをきっかけに、
                 Web制作に興味を持ちました。<br>
                 その後、スクールで学びWebオペレーターとして5年勤務。休日は独学でコーディングを勉強するようになり、コードを書く楽しさを仕事にしたくなりました。「Webで人をワクワクさせる」をモットーに今日もコードを書いています。
               </p>
@@ -153,7 +160,7 @@
           <!-- /.p-top__aboutRightMain -->
           <div class="p-top__aboutContentsLeft">
             <figure class="thumbnail">
-              <img class="thumbnail__img u-objectFit" src="<?php echo esc_url(THEME_URL); ?>/assets/images/top_about_profile.jpg" srcset="<?php echo esc_url(THEME_URL); ?>/assets/images/top_about_profile@2x.jpg" width="495" height="392" alt="カメラ目線で微笑むいたいかな">
+              <img class="thumbnail__img u-objectFit" src="<?php echo esc_url(THEME_URL); ?>/assets/images/top_about_profile.jpg" srcset="<?php echo esc_url(THEME_URL); ?>/assets/images/top_about_profile@2x.jpg" width="495" height="392" alt="顔に本を被せて上を向くいたいかな">
             </figure>
           </div>
           <!-- /.p-top__aboutLeft -->
@@ -163,10 +170,17 @@
     </section>
     <section class="p-top__works">
       <div class="p-top__works-inner">
-        <hgroup class="c-title">
-          <h2 class="c-title__ja"><span class="c-title__jaTxt js-contentsTitle">つくったもの</span></h2>
-          <p class="c-title__en">works</p>
-        </hgroup>
+        <div class="c-title">
+          <hgroup class="c-title__txt">
+            <h2 class="c-title__txtJa"><span class="c-title__txtJaItem js-contentsTitle">つくったもの</span></h2>
+            <p class="c-title__txtEn">works</p>
+          </hgroup>
+          <div class="c-title__img">
+            <img class="img js-contentsTitle" src="<?php echo esc_url(THEME_URL); ?>/assets/images/ebifurai.svg" alt="">
+          </div>
+          <!-- /.c-title__img -->
+        </div>
+        <!-- /.c-title -->
         <?php
         $args = [
           "post_type" => "products",
@@ -179,17 +193,17 @@
         ?>
 
         <?php if ($the_query->have_posts()) : ?>
-        <div class="p-top__worksContents">
-          <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-          <article class="p-top__worksContentsItem js-productsCard">
-            <div class="txt">
-              <h3 class="txt__title">
+          <div class="p-top__worksContents">
+            <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+              <article class="p-top__worksContentsItem js-productsCard">
+                <div class="txt">
+                  <h3 class="txt__title">
                     <?php if (get_field("subTitle")) : ?>
                       <span class="txt__titleSub"><?php the_field("subTitle"); ?></span>
                     <?php endif; ?>
                     <span class="txt__titleMain"><?php the_title(); ?></span>
                   </h3>
-              <?php
+                  <?php
                   $excerpt = get_the_excerpt();
 
                   if (!empty($excerpt)) {
@@ -204,19 +218,19 @@
                     }
                   }
                   ?>
-              <?php $terms = get_the_terms($post->ID, "product_category"); ?>
-              <?php if ($terms && !is_wp_error($terms)): ?>
-              <ul class="category">
-                <?php foreach ($terms as $term) : ?>
-                <?php if ($term->slug !== "all") : ?>
-                <li class="category__Item">
-                  <a href="<?php echo esc_url(get_term_link($term, $term->taxonomy)); ?>" class="category__Item__Link"><?php echo esc_html($term->name); ?></a>
-                </li>
-                <?php endif; ?>
-                <?php endforeach; ?>
-              </ul>
-              <?php endif; ?>
-              <p class="c-btn">
+                  <?php $terms = get_the_terms($post->ID, "product_category"); ?>
+                  <?php if ($terms && !is_wp_error($terms)): ?>
+                    <ul class="category">
+                      <?php foreach ($terms as $term) : ?>
+                        <?php if ($term->slug !== "all") : ?>
+                          <li class="category__Item">
+                            <a href="<?php echo esc_url(get_term_link($term, $term->taxonomy)); ?>" class="category__Item__Link"><?php echo esc_html($term->name); ?></a>
+                          </li>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                    </ul>
+                  <?php endif; ?>
+                  <p class="c-btn">
                     <a href="<?php the_permalink(); ?>" class="c-btn__link js-btn__link">
                       <span class="c-btn__linkTxt">詳しく見る</span>
                       <span class="c-btn__linkIcon">
@@ -229,23 +243,23 @@
                       </span>
                     </a>
                   </p>
-            </div>
-            <div class="thumbnail">
-              <figure class="thumbnail__img js-productsImg">
-                <?php if (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail(); ?>
-                <?php else : ?>
-                <p>画像がありません。</p>
-                <?php endif; ?>
-              </figure>
-            </div>
-            <!-- /.thumbnail -->
-          </article>
-          <?php endwhile; ?>
-        </div>
-        <!-- /.p-top__worksContents -->
-        <div class="p-top__worksBtn c-productsBtn js-productsBtn">
-          <?php
+                </div>
+                <div class="thumbnail">
+                  <figure class="thumbnail__img js-productsImg">
+                    <?php if (has_post_thumbnail()) : ?>
+                      <?php the_post_thumbnail(); ?>
+                    <?php else : ?>
+                      <p>画像がありません。</p>
+                    <?php endif; ?>
+                  </figure>
+                </div>
+                <!-- /.thumbnail -->
+              </article>
+            <?php endwhile; ?>
+          </div>
+          <!-- /.p-top__worksContents -->
+          <div class="p-top__worksBtn c-productsBtn js-productsBtn">
+            <?php
             $menu = wp_get_nav_menu_object("grobal");
 
             if ($menu) {
@@ -263,9 +277,9 @@
               }
             }
             ?>
-          <a class="p-top__worksBtnInner c-productsBtnInner js-btn__link" href="<?php echo $url; ?>">
-            <p class="c-btn__linkTxt">つくったものをすべて見る</p>
-            <p class="c-btn">
+            <a class="p-top__worksBtnInner c-productsBtnInner js-btn__link" href="<?php echo $url; ?>">
+              <p class="c-btn__linkTxt">つくったものをすべて見る</p>
+              <p class="c-btn">
                 <span class="c-btn__link">
                   <span class="c-btn__linkIcon">
                     <svg class="c-btn__linkIconArrow" width="12" height="10" viewBox="0 0 12 10">
@@ -277,12 +291,12 @@
                   </span>
                 </span>
               </p>
-          </a>
-          <!-- /.p-top__worksBtnInner -->
-        </div>
-        <!-- /.p-top__worksBtn -->
+            </a>
+            <!-- /.p-top__worksBtnInner -->
+          </div>
+          <!-- /.p-top__worksBtn -->
         <?php else : ?>
-        <p>制作実績はありません。</p>
+          <p>制作実績はありません。</p>
         <?php endif;
         wp_reset_postdata(); ?>
       </div>

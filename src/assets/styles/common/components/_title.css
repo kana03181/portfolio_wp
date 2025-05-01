@@ -1,11 +1,19 @@
 .c-title{
+  display: flex;
+  gap: fluid(3px 5px);
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-block-end: fluid(24px 36px);
+}
+
+.c-title__txt{
   --gap:24;
 
   display: grid;
   gap: fluid(10px 24px);
 }
 
-.c-title__ja{
+.c-title__txtJa{
   position: relative;
   display: inline-block;
   overflow: hidden;
@@ -13,14 +21,15 @@
 
   &.--under{
     font-size: fluid(20px 40px);
+    line-height: 1.25;
   }
 }
 
-.c-title__jaTxt {
+.c-title__txtJaItem {
   display: inline-block;
 }
 
-.c-title__en{
+.c-title__txtEn{
   --pb:3;
 
   order: -1;
@@ -35,13 +44,19 @@
   border-radius: 100%;
 }
 
-.c-title__ja,
-.c-title__en{
+.c-title__txtJa,
+.c-title__txtEn{
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: var(--tracking-normal);
 }
 
+.c-title__img{
+  display: inline-block;
+  display: inline-block;
+  width: fluid(18px 36px);
+  overflow: hidden;
+}
 
 
 .js-contentsTitle > span {

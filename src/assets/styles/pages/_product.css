@@ -178,6 +178,10 @@
     font-size: fluid(14px 16px);
     line-height: 1.75;
     letter-spacing: var(--tracking-normal);
+
+    @media (max-width:768px){
+      line-height: 1.9;
+    }
   }
 
   & .category{

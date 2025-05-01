@@ -5,17 +5,17 @@
     <div class="cm-under__contents-inner">
       <div class="cm-under__hero">
         <div class="cm-under__hero-inner u-container">
-          <div class="cm-under__heroTitle">
-            <hgroup class="c-title">
-              <h2 class="c-title__ja --under"><span class="c-title__jaTxt js-contentsTitle">つくったもの</span></h2>
-              <p class="c-title__en">Works</p>
+          <div class="c-title">
+            <hgroup class="c-title__txt">
+              <h2 class="c-title__txtJa"><span class="c-title__txtJaItem js-contentsTitle">つくったもの</span></h2>
+              <p class="c-title__txtEn">works</p>
             </hgroup>
-            <!-- <div class="cm-under__heroTitleImg">
-              <img class="img" src="<?php echo esc_url(THEME_URL); ?>/assets/images/product_icon.svg" alt="">
-            </div> -->
-            <!-- /.cm-under__heroTitleImg -->
+            <div class="c-title__img">
+              <img class="img js-contentsTitle" src="<?php echo esc_url(THEME_URL); ?>/assets/images/ebifurai.svg" alt="">
+            </div>
+            <!-- /.c-title__img -->
           </div>
-          <!-- /.cm-under__heroTitle -->
+          <!-- /.c-title -->
           <div class="cm-under__heroImg">
             <figure class="cm-under__heroImgItem">
               <img class="img u-objectFit" src="<?php echo esc_url(THEME_URL); ?>/assets/images/product_mv.jpg" srcset="<?php echo esc_url(THEME_URL); ?>/assets/images/product_mv@2x.jpg" width="994" height="370" alt="パソコンを操作する女性">
@@ -31,9 +31,9 @@
           <div class="cm-under__mainBody p-product__mainBody">
             <div class="cm-under__index p-product__bodyIndex">
               <ul class="cm-under__indexList p-product__bodyIndexList">
-                <!-- <li class="cm-under__indexListItem item">
+                <li class="cm-under__indexListItem item">
                   <a class="link item__link js-categoryLink" data-slug="all" role="link">All</a>
-                </li> -->
+                </li>
                 <li class="cm-under__indexListItem item">
                   <a class="link item__link js-categoryLink" data-slug="direction" role="link">Direction</a>
                 </li>

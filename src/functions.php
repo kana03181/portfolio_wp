@@ -4,8 +4,6 @@
 ======================================*/
 require_once('lib/ViteHelper.php'); // こちらは削除しないでください。
 
-
-
 /*======================================
   初期設定
 ======================================*/
@@ -73,8 +71,6 @@ function theme_setup()
 }
 add_action('after_setup_theme', 'theme_setup');
 
-
-
 /*======================================
     ナビゲーションをカスタマイズ
 ======================================*/
@@ -132,6 +128,7 @@ add_filter("nav_menu_link_attributes", "custom_nav_menu_link", 10, 3);
 if (!isset($content_width)) {
   $content_width = 1110;
 }
+
 
 /*======================================
   フォントの追加
@@ -451,6 +448,7 @@ function my_custom_meta_box_callback($post)
 {
   // 現在の投稿のカスタムフィールドを取得
   $date = get_post_meta($post->ID, '_date', true);
+  $finish = get_post_meta($post->ID, '_finish', true);
   $scale = get_post_meta($post->ID, '_scale', true);
   $position = get_post_meta($post->ID, '_position', true);
   $term = get_post_meta($post->ID, '_term', true);
@@ -464,6 +462,10 @@ function my_custom_meta_box_callback($post)
   // 公開日入力欄
   echo '<label for="date">公開日：</label>';
   echo '<input type="text" id="date" name="date" value="' . esc_attr($date) . '" style="margin-bottom: 1em;" /><br>';
+
+  // 公開日入力欄
+  echo '<label for="finish">完成日：</label>';
+  echo '<input type="text" id="finish" name="finish" value="' . esc_attr($finish) . '" style="margin-bottom: 1em;" /><br>';
 
   // 制作規模入力欄
   echo '<label for="scale">制作規模：</label>';
@@ -511,6 +513,9 @@ function my_custom_meta_box_save($post_id)
   // 公開日と著者名を保存
   if (isset($_POST['date'])) {
     update_post_meta($post_id, '_date', sanitize_text_field($_POST['date']));
+  }
+  if (isset($_POST['finish'])) {
+    update_post_meta($post_id, '_finish', sanitize_text_field($_POST['finish']));
   }
   if (isset($_POST['scale'])) {
     update_post_meta($post_id, '_scale', sanitize_text_field($_POST['scale']));

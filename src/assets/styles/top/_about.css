@@ -113,17 +113,17 @@
   .main__txt{
     font-size: fluid(14px 18px);
     font-weight: 500;
-    line-height: 1.85;
+    line-height: 1.95;
     letter-spacing: var(--tracking-normal);
 
     @media (max-width:768px){
-      line-height: 1.4;
+      line-height: 1.85;
     }
 
     & + .main__txt{
       --mb-start:24;
 
-      margin-block-start: calc(var(--mb-start) / 16 * 1rem - 1em);
+      margin-block-start: calc(var(--mb-start) / 16 * 1rem);
     }
   }
 }

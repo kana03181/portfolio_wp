@@ -5,13 +5,17 @@
     <div class="cm-under__contents-inner">
       <div class="cm-under__hero">
         <div class="cm-under__hero-inner u-container">
-          <div class="cm-under__heroTitle">
-            <hgroup class="c-title">
-              <h2 class="c-title__ja --under"><span class="c-title__jaTxt js-contentsTitle"><?php single_term_title(); ?></span></h2>
-              <p class="c-title__en">Role</p>
+          <div class="c-title">
+            <hgroup class="c-title__txt">
+              <h2 class="c-title__txtJa --under"><span class="c-title__txtJaItem js-contentsTitle"><?php single_term_title(); ?></span></h2>
+              <p class="c-title__txtEn">Role</p>
             </hgroup>
+            <div class="c-title__img">
+              <img class="img js-contentsTitle" src="<?php echo esc_url(THEME_URL); ?>/assets/images/ebifurai.svg" alt="">
+            </div>
+            <!-- /.c-title__img -->
           </div>
-          <!-- /.cm-under__heroTitle -->
+          <!-- /.c-title -->
         </div>
         <!-- /.cm-under__hero-inner u-container -->
       </div>
@@ -21,14 +25,14 @@
           <div class="cm-under__mainBody p-product__mainBody">
             <!-- 各制作実績コンテンツ -->
             <?php if (have_posts()) : ?>
-            <div class="p-product__bodyMain js-product__bodyMain">
-              <?php while (have_posts()) : the_post();
+              <div class="p-product__bodyMain js-product__bodyMain">
+                <?php while (have_posts()) : the_post();
                   get_template_part("template/content", "archive");
                 endwhile; ?>
-            </div>
-            <!-- 各制作実績ここまで -->
-            <!-- /.p-product__bodyMain -->
-            <?php
+              </div>
+              <!-- 各制作実績ここまで -->
+              <!-- /.p-product__bodyMain -->
+              <?php
               $args = [
                 "prev_text" => "<span class='u-visuallyHidden'>前へ</span>",
                 "next_text" => "<span class='u-visuallyHidden'>次へ</span>",
@@ -36,7 +40,7 @@
               the_posts_pagination($args);
               ?>
             <?php else : ?>
-            <p>制作実績はありません。</p>
+              <p>制作実績はありません。</p>
             <?php endif; ?>
           </div>
           <!-- /.p-product__body -->

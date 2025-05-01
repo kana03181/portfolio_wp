@@ -8,17 +8,17 @@
       <div class="cm-under__contents-inner">
         <div class="cm-under__hero">
           <div class="cm-under__hero-inner u-container">
-            <div class="cm-under__heroTitle">
-              <hgroup class="c-title">
-                <h2 class="c-title__ja --under"><span class="c-title__jaTxt js-contentsTitle">わたしについて</span></h2>
-                <p class="c-title__en">about</p>
+            <div class="c-title">
+              <hgroup class="c-title__txt">
+                <h2 class="c-title__txtJa --under"><span class="c-title__txtJaItem js-contentsTitle">わたしについて</span></h2>
+                <p class="c-title__txtEn">about</p>
               </hgroup>
-              <!-- <div class="cm-under__heroTitleImg">
-                  <img class="img" src="<?php echo esc_url(THEME_URL); ?>/assets/images/product_icon.svg" alt="">
-                </div> -->
-              <!-- /.cm-under__heroTitleImg -->
+              <div class="c-title__img">
+                <img class="img js-contentsTitle" src="<?php echo esc_url(THEME_URL); ?>/assets/images/ebifurai.svg" alt="">
+              </div>
+              <!-- /.c-title__img -->
             </div>
-            <!-- /.cm-under__heroTitle -->
+            <!-- /.c-title -->
             <div class="cm-under__heroImg">
               <figure class="cm-under__heroImgItem">
                 <img class="img u-objectFit" src="<?php echo esc_url(THEME_URL); ?>/assets/images/about_mv.jpg" srcset="<?php echo esc_url(THEME_URL); ?>/assets/images/about_mv@2x.jpg" width="1110" height="414" alt="夕暮れでオレンジ色に染まる空">
@@ -52,13 +52,14 @@
                           <span class="body__itemNameEn">Kana Itai</span>
                         </p>
                         <p class="body__itemTxt">
-                          1996年3月18日生まれ。魚座のAB型。<br>福岡県大野城市でこの世に生まれ、2歳からは母の生まれ故郷の熊本で育ちました。
+                          1996年3月18日生まれ。<br class="body__itemTxtBr">魚座のAB型。<br>福岡県大野城市で生まれ、2歳のときに母の故郷である熊本へ移り住み、以降は熊本で育ちました。
                         </p>
                         <p class="body__itemTxt">
-                          現在はオンラインサロンでコーディングの勉強をしながら、日々勉強・制作しております。
+                          Webオペレーターとして転職した当初は、バナー制作などの業務を通じてデザインの勉強をしていましたが、次第にデザインよりもコーディングの楽しさに魅力を感じるようになり、独学で学び始めました。
+                          現在はオンラインサロンに所属しながら、個人制作に取り組んでいます。
                         </p>
                         <p class="body__itemTxt">
-                          今後はお客様のご要望に柔軟に対応しつつ、プラスアルファのご提案ができるようなエンジニアを目指しています。
+                          今後はお客様のご要望に柔軟に対応しながら、+αでご提案ができるエンジニアを目指しています。
                         </p>
                       </div>
                       <!-- /.pm-about__cardBody -->
@@ -90,7 +91,7 @@
                   <div class="p-about__contentFavoriteCard">
                     <div class="body pm-about__card">
                       <div class="body__item pm-about__cardBody">
-                        <p class="body__itemSubtitle pm-about__cardBodySubtitle">フィルムのような、懐かしい<wbr>気持ちを</p>
+                        <p class="body__itemSubtitle pm-about__cardBodySubtitle">フィルムのような、<br class="body__itemSubtitleBr">懐かしい気持ちを</p>
                         <p class="body__itemTitle pm-about__cardBodyTitle">カメラで写真を撮る</p>
                         <p class="body__itemTxt pm-about__cardBodyTxt">
                           母の民泊のサイトで撮影をすることになったのをきっかけに、ミラーレス一眼レフカメラを購入し、写真を撮り始めました。<br>
@@ -250,7 +251,7 @@
                       <dt class="body__title">Web Development</dt>
                       <dd class="body__txt">
                         <p class="body__txtSentence">
-                          Visual Studio Codeを使用し、静的ページ・JavaScriptライブラリ(Swiper・GSAP)を使用した動的ページ制作します。Webクリエイター オンラインサロン「Shibajuku」で習得したアクセシビリティーを意識したコーディングを心がけております。
+                          静的なWebサイトから動きのある表現まで、目的に応じて柔軟に制作を行っています。Webクリエイター オンラインサロン「Shibajuku」で学んだフロントエンドの知識を活かしながら、ユーザーにとって快適で親しみやすく、理解しやすいコーディングを心がけています。
                         </p>
                         <p class="body__txtSentence">
                           CMSはオリジナルテンプレートの作成・記事の更新作業・お問い合わせフォームの制作まで制作しております。
